@@ -19,7 +19,7 @@ export default function NewCollectionForm() {
     let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`, {
       method: "POST",
       body: JSON.stringify({
-        key: 22,
+        key: Math.floor(Math.random() * 1000000000000000000),
         name: name,
         lastUsed: formattedDate,
         dateTime: dateTime,
