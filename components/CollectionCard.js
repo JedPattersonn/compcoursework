@@ -7,64 +7,26 @@ const statuses = {
   Withdraw: "text-gray-500 bg-gray-50 ring-gray-200",
   Overdue: "text-red-600 bg-red-50 ring-red-600/10",
 };
-const clients = [
-  {
-    key: 1,
-    name: "Biology Paper 1",
-    imageUrl: "https://tailwindui.com/img/logos/48x48/tuple.svg",
-    lastInvoice: {
-      date: "December 13, 2022",
-      dateTime: "2022-12-13",
-      amount: "23",
-      status: "Overdue",
-    },
-  },
-  {
-    key: 2,
-    name: "Business Theorists",
-    imageUrl: "https://tailwindui.com/img/logos/48x48/savvycal.svg",
-    lastInvoice: {
-      date: "January 22, 2023",
-      dateTime: "2023-01-22",
-      amount: "79",
-      status: "Paid",
-    },
-  },
-  {
-    key: 3,
-    name: "Macro - Banking",
-    imageUrl: "https://tailwindui.com/img/logos/48x48/reform.svg",
-    lastInvoice: {
-      date: "January 23, 2023",
-      dateTime: "2023-01-23",
-      amount: "0",
-      status: "Paid",
-    },
-  },
-];
-
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function CollcetionCard() {
-
   const [cards, setCards] = useState([]);
-
 
   const getCards = async () => {
     let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
-    method: "GET"
-  });
-  res = await res.json();
-  return res
-  }
+      method: "GET",
+    });
+    res = await res.json();
+    return res;
+  };
   useEffect(() => {
     async function fetchData() {
       const response = await getCards();
       setCards(response.data);
     }
-  
+
     fetchData();
   }, []);
 
@@ -74,7 +36,7 @@ export default function CollcetionCard() {
       className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8"
     >
       {cards.map((client) => (
-        <a href={`/collection/${client.name}`} key={client.key}>
+        <a href={`/collection/${client.key}`} key={client.key}>
           <li
             key={client.id}
             className="overflow-hidden rounded-xl border border-gray-200"
@@ -88,9 +50,7 @@ export default function CollcetionCard() {
               <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Last opened</dt>
                 <dd className="text-gray-700">
-                  <time dateTime={client.dateTime}>
-                    {client.lastUsed}
-                  </time>
+                  <time dateTime={client.dateTime}>{client.lastUsed}</time>
                 </dd>
               </div>
               <div className="flex justify-between gap-x-4 py-3">

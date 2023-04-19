@@ -1,7 +1,7 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-export default function NewCardForm() {
+export default function NewCollectionForm() {
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
 

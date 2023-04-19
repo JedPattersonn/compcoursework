@@ -2,10 +2,8 @@ import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-import CardGrid from "./CardGrid";
-import CardGridHeader from "./CardGridHeader";
 import Link from "next/link";
-import { useState, useEffect } from "react";
+import NewCardForm from "../../components/NewCardForm";
 
 const user = {
   name: "Tom Cook",
@@ -23,51 +21,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CollectionDashboard(props) {
-  const [data, setData] = useState([]);
-  const [title, setTitle] = useState("");
-
-  const fetchData = async () => {
-    try {
-      let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/query`, {
-        method: "POST",
-        body: JSON.stringify({
-          key: props.id,
-        }),
-      });
-      const jsonData = await response.json();
-      setData(jsonData.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchTitle = async () => {
-    try {
-      let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collectiondata`, {
-        method: "POST",
-        body: JSON.stringify({
-          key: +props.id,
-        }),
-      });
-      const jsonData = await response.json();
-      console.log(jsonData);
-      setTitle(jsonData[0].name);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-    }
-  };
-
-  useEffect(() => {
-    fetchTitle();
-  })
-
-  
-
+export default function NewCard(props) {
   return (
     <>
       <div className="min-h-full">
@@ -182,8 +136,12 @@ export default function CollectionDashboard(props) {
                 </div>
                 <div className="hidden border-t border-white border-opacity-20 py-5 lg:block">
                   <div className="grid grid-cols-3 items-center gap-8">
-                    <div className="col-span-2"></div>
-                    <div></div>
+                    <div className="col-span-2">
+                      
+                    </div>
+                    <div>
+                      
+                    </div>
                   </div>
                 </div>
               </div>
@@ -331,9 +289,7 @@ export default function CollectionDashboard(props) {
                   </h2>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6">
-                      <CardGridHeader title={title} />
-                      <br />
-                      <CardGrid data={data}/>
+                    <NewCardForm />
                     </div>
                   </div>
                 </section>
@@ -343,7 +299,9 @@ export default function CollectionDashboard(props) {
         </main>
 
         <footer>
-          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8"></div>
+          <div className="mx-auto max-w-3xl px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            
+          </div>
         </footer>
       </div>
     </>
