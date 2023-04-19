@@ -2,7 +2,8 @@ import { Fragment } from "react";
 import { Menu, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
-
+import Link from "next/link";
+import NewCollectionForm from "./NewCollectionForm";
 
 const user = {
   name: "Tom Cook",
@@ -31,14 +32,14 @@ export default function NewCollcetion(props) {
                 <div className="relative flex items-center justify-center py-5 lg:justify-between">
                   {/* Logo */}
                   <div className="absolute left-0 flex-shrink-0 lg:static">
-                    <a href="/">
+                    <Link href="/">
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
                         alt="Your Company"
                       />
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Right section on desktop */}
@@ -288,7 +289,7 @@ export default function NewCollcetion(props) {
                   </h2>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6">
-                    <h1>New Collection</h1>
+                    <NewCollectionForm />
                     </div>
                   </div>
                 </section>

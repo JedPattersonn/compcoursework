@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment, useState, useEffect } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
 
@@ -9,7 +9,7 @@ const statuses = {
 };
 const clients = [
   {
-    id: 1,
+    key: 1,
     name: "Biology Paper 1",
     imageUrl: "https://tailwindui.com/img/logos/48x48/tuple.svg",
     lastInvoice: {
@@ -20,7 +20,7 @@ const clients = [
     },
   },
   {
-    id: 2,
+    key: 2,
     name: "Business Theorists",
     imageUrl: "https://tailwindui.com/img/logos/48x48/savvycal.svg",
     lastInvoice: {
@@ -31,7 +31,7 @@ const clients = [
     },
   },
   {
-    id: 3,
+    key: 3,
     name: "Macro - Banking",
     imageUrl: "https://tailwindui.com/img/logos/48x48/reform.svg",
     lastInvoice: {
@@ -48,13 +48,33 @@ function classNames(...classes) {
 }
 
 export default function CollcetionCard() {
+
+  const [cards, setCards] = useState([]);
+
+
+  const getCards = async () => {
+    let res = await fetch("http://localhost:3000/api/posts", {
+    method: "GET"
+  });
+  res = await res.json();
+  return res
+  }
+  useEffect(() => {
+    async function fetchData() {
+      const response = await getCards();
+      setCards(response.data);
+    }
+  
+    fetchData();
+  }, []);
+
   return (
     <ul
       role="list"
       className="grid grid-cols-1 gap-x-6 gap-y-8 lg:grid-cols-3 xl:gap-x-8"
     >
-      {clients.map((client) => (
-        <a href={`/collection/${client.name}`}>
+      {cards.map((client) => (
+        <a href={`/collection/${client.name}`} key={client.key}>
           <li
             key={client.id}
             className="overflow-hidden rounded-xl border border-gray-200"
@@ -68,8 +88,8 @@ export default function CollcetionCard() {
               <div className="flex justify-between gap-x-4 py-3">
                 <dt className="text-gray-500">Last opened</dt>
                 <dd className="text-gray-700">
-                  <time dateTime={client.lastInvoice.dateTime}>
-                    {client.lastInvoice.date}
+                  <time dateTime={client.dateTime}>
+                    {client.lastUsed}
                   </time>
                 </dd>
               </div>
@@ -77,7 +97,7 @@ export default function CollcetionCard() {
                 <dt className="text-gray-500">Amount</dt>
                 <dd className="flex items-start gap-x-2">
                   <div className="font-medium text-gray-900">
-                    {client.lastInvoice.amount}
+                    {client.amount}
                   </div>
                 </dd>
               </div>

@@ -4,6 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import CardGrid from "./CardGrid";
 import CardGridHeader from "./CardGridHeader";
+import Link from "next/link";
 
 const user = {
   name: "Tom Cook",
@@ -32,14 +33,14 @@ export default function CollectionDashboard(props) {
                 <div className="relative flex items-center justify-center py-5 lg:justify-between">
                   {/* Logo */}
                   <div className="absolute left-0 flex-shrink-0 lg:static">
-                    <a href="/">
+                    <Link href="/">
                       <span className="sr-only">Your Company</span>
                       <img
                         className="h-8 w-auto"
                         src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=300"
                         alt="Your Company"
                       />
-                    </a>
+                    </Link>
                   </div>
 
                   {/* Right section on desktop */}
