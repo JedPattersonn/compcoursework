@@ -53,7 +53,7 @@ export default function CollcetionCard() {
 
 
   const getCards = async () => {
-    let res = await fetch("http://localhost:3000/api/posts", {
+    let res = await fetch(`${process.env.REACT_APP_API_URL}/posts`, {
     method: "GET"
   });
   res = await res.json();
