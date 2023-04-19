@@ -16,7 +16,7 @@ export default function NewCollectionForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let res = await fetch(`${process.env.REACT_APP_API_URL}/collection`, {
+    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`, {
       method: "POST",
       body: JSON.stringify({
         key: 22,
