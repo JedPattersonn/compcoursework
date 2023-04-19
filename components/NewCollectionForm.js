@@ -25,6 +25,7 @@ export default function NewCollectionForm() {
         dateTime: dateTime,
         amount: 0,
         description: description,
+        amountRevised: 0
       }),
     });
     if (res.ok) {
