@@ -23,19 +23,19 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function CollectionDashboard(props) {
+export default function CollectionDashboard({ id }) {
   const [data, setData] = useState([]);
   const [title, setTitle] = useState("");
-
   const fetchData = async () => {
     try {
       let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/query`, {
         method: "POST",
         body: JSON.stringify({
-          key: props.id,
+          key: +id,
         }),
       });
       const jsonData = await response.json();
+      console.log("Sending data");
       setData(jsonData.data);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -48,14 +48,16 @@ export default function CollectionDashboard(props) {
 
   const fetchTitle = async () => {
     try {
-      let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collectiondata`, {
-        method: "POST",
-        body: JSON.stringify({
-          key: +props.id,
-        }),
-      });
+      let response = await fetch(
+        `${process.env.NEXT_PUBLIC_API_URL}/collectiondata`,
+        {
+          method: "POST",
+          body: JSON.stringify({
+            key: +id,
+          }),
+        }
+      );
       const jsonData = await response.json();
-      console.log(jsonData);
       setTitle(jsonData[0].name);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -64,9 +66,7 @@ export default function CollectionDashboard(props) {
 
   useEffect(() => {
     fetchTitle();
-  })
-
-  
+  });
 
   return (
     <>
@@ -333,7 +333,7 @@ export default function CollectionDashboard(props) {
                     <div className="p-6">
                       <CardGridHeader title={title} />
                       <br />
-                      <CardGrid data={data}/>
+                      <CardGrid data={data} />
                     </div>
                   </div>
                 </section>

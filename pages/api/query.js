@@ -6,11 +6,11 @@ export default async function handler(req, res) {
   switch (req.method) {
     case "POST":
       let bodyObject = JSON.parse(req.body);
+      let myPost = await db.collection("cards").insertOne(bodyObject);
       const allPosts = await db
         .collection("cards")
-        .find(bodyObject)
+        .find({ key: `${bodyObject.key}` })
         .toArray();
-        console.log(allPosts)
       res.json({ status: 200, data: allPosts });
       break;
   }
