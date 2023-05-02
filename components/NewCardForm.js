@@ -52,6 +52,7 @@ export default function NewCardForm({ id }) {
                     aria-describedby="email-description"
                     value={term}
                     onChange={(e) => setTerm(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -71,6 +72,7 @@ export default function NewCardForm({ id }) {
                   defaultValue={""}
                   value={definition}
                   onChange={(e) => setDefinition(e.target.value)}
+                  required
                 />
               </div>
             </div>
