@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import Flashcard from "./flashcard";
-import { flashcards } from "./data";
 import Link from "next/link";
 
 const FlashCardHandler = ({ id }) => {
