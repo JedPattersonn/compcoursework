@@ -65,6 +65,7 @@ export default function EditCardForm({}) {
                     value={currentTerm}
                     aria-describedby="email-description"
                     onChange={(e) => setCurrentTerm(e.target.value)}
+                    required
                   />
                 </div>
               </div>
@@ -84,6 +85,7 @@ export default function EditCardForm({}) {
                   defaultValue={""}
                   value={currentDefinition}
                   onChange={(e) => setCurrentDefinition(e.target.value)}
+                  required
                 />
               </div>
             </div>
