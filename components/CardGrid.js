@@ -1,25 +1,27 @@
-import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
+import { PencilSquareIcon, TrashIcon } from "@heroicons/react/20/solid";
 
 const CardGrid = ({ data, collectionID }) => {
-
-  console.log(data)
+  console.log(data);
 
   const handleDelete = async (id) => {
     try {
       const response = await fetch(`/api/deleteCard`, {
-        method: 'POST',
+        method: "POST",
         body: JSON.stringify({ id: id, collectionID: collectionID }),
-      })
+      });
       if (response.status === 200) {
         location.reload();
       }
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-  }
+  };
 
   return (
-    <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+    <ul
+      role="list"
+      className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
+    >
       {data.map((person) => (
         <li
           key={person.id}
@@ -35,10 +37,15 @@ const CardGrid = ({ data, collectionID }) => {
             <div className="-mt-px flex divide-x divide-gray-200">
               <div className="flex w-0 flex-1">
                 <a
-                  href={`${person.id}`}
+                  href={`/editcard/${person.id}?term=${encodeURIComponent(
+                    person.term
+                  )}&definition=${encodeURIComponent(person.definition)}`}
                   className="relative -mr-px inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-bl-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                 >
-                  <PencilSquareIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <PencilSquareIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                   Edit
                 </a>
               </div>
@@ -47,7 +54,10 @@ const CardGrid = ({ data, collectionID }) => {
                   onClick={() => handleDelete(person.id)}
                   className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                 >
-                  <TrashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
+                  <TrashIcon
+                    className="h-5 w-5 text-gray-400"
+                    aria-hidden="true"
+                  />
                   Delete
                 </button>
               </div>
@@ -56,7 +66,7 @@ const CardGrid = ({ data, collectionID }) => {
         </li>
       ))}
     </ul>
-  )
-}
+  );
+};
 
-export default CardGrid
+export default CardGrid;
