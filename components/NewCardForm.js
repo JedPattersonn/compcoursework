@@ -13,7 +13,9 @@ export default function NewCardForm({ id }) {
         id: Math.floor(Math.random() * 1000000000000000000),
         key: id,
         term: term,
-        definition: definition
+        definition: definition,
+        correctCount: 0,
+        incorrectCount: 0
       }),
     });
     if (res.ok) {

@@ -54,10 +54,26 @@ export default function CollcetionCard() {
                 </dd>
               </div>
               <div className="flex justify-between gap-x-4 py-3">
-                <dt className="text-gray-500">Amount</dt>
+                <dt className="text-gray-500">Number of Cards</dt>
                 <dd className="flex items-start gap-x-2">
                   <div className="font-medium text-gray-900">
                     {client.amount}
+                  </div>
+                </dd>
+              </div>
+              <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Amount Correct</dt>
+                <dd className="flex items-start gap-x-2">
+                  <div className="font-medium text-gray-900">
+                    {client.correctCount}
+                  </div>
+                </dd>
+              </div>
+              <div className="flex justify-between gap-x-4 py-3">
+                <dt className="text-gray-500">Amount Incorrect</dt>
+                <dd className="flex items-start gap-x-2">
+                  <div className="font-medium text-gray-900">
+                    {client.incorrectCount}
                   </div>
                 </dd>
               </div>

@@ -1,15 +1,23 @@
 import { PencilSquareIcon, TrashIcon } from '@heroicons/react/20/solid'
 
-const people = [
-  {
-    term: 'Mitocondria',
-    definition: 'Powerhouse of the cell',
-    id: '535345352',
-    },
-  // More people...
-]
+const CardGrid = ({ data, collectionID }) => {
 
-export default function CardGrid({data}) {
+  console.log(data)
+
+  const handleDelete = async (id) => {
+    try {
+      const response = await fetch(`/api/deleteCard`, {
+        method: 'POST',
+        body: JSON.stringify({ id: id, collectionID: collectionID }),
+      })
+      if (response.status === 200) {
+        location.reload();
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <ul role="list" className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
       {data.map((person) => (
@@ -35,13 +43,13 @@ export default function CardGrid({data}) {
                 </a>
               </div>
               <div className="-ml-px flex w-0 flex-1">
-                <a
-                  href={`${person.telephone}`}
+                <button
+                  onClick={() => handleDelete(person.id)}
                   className="relative inline-flex w-0 flex-1 items-center justify-center gap-x-3 rounded-br-lg border border-transparent py-4 text-sm font-semibold text-gray-900"
                 >
                   <TrashIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
                   Delete
-                </a>
+                </button>
               </div>
             </div>
           </div>
@@ -50,3 +58,5 @@ export default function CardGrid({data}) {
     </ul>
   )
 }
+
+export default CardGrid

@@ -333,7 +333,7 @@ export default function CollectionDashboard({ id }) {
                     <div className="p-6">
                       <CardGridHeader title={title} id={id}/>
                       <br />
-                      <CardGrid data={data} />
+                      <CardGrid data={data} collectionID={id}/>
                     </div>
                   </div>
                 </section>

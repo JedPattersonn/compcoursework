@@ -16,7 +16,7 @@ export default function NewCardForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let res = await fetch(`/api/collection`, {
+    let res = await fetch(`/api/collectionInfo`, {
       method: "POST",
       body: JSON.stringify({
         key: Math.floor(Math.random() * 1000000000000000000),
@@ -25,7 +25,9 @@ export default function NewCardForm() {
         dateTime: dateTime,
         amount: 0,
         description: description,
-        amountRevised: 0
+        amountRevised: 0,
+        correctCount: 0,
+        incorrectCount: 0
       }),
     });
     if (res.ok) {
