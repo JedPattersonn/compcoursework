@@ -41,11 +41,9 @@ export default function CollectionDashboard({ id }) {
       console.error("Error fetching data:", error);
     }
   };
-
   useEffect(() => {
     fetchData();
   }, []);
-
   const fetchTitle = async () => {
     try {
       let response = await fetch(
@@ -63,7 +61,6 @@ export default function CollectionDashboard({ id }) {
       console.error("Error fetching data:", error);
     }
   };
-
   useEffect(() => {
     fetchTitle();
   });
@@ -331,7 +328,7 @@ export default function CollectionDashboard({ id }) {
                   </h2>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6">
-                      <CardGridHeader title={title} id={id}/>
+                      <CardGridHeader title={title} id={id} data={data}/>
                       <br />
                       <CardGrid data={data} collectionID={id}/>
                     </div>
