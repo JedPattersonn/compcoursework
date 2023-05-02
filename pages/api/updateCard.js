@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (req.method) {
     case "POST":
-        const { id, term, definition } = req.body;
+      const { id, term, definition } = req.body;
       // Update the card in the "cards" collection
       const result = await db.collection("cards").updateOne(
         { id: parseInt(id) },
