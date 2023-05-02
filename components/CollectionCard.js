@@ -1,15 +1,4 @@
-import { Fragment, useState, useEffect } from "react";
-import { Menu, Transition } from "@headlessui/react";
-import { EllipsisHorizontalIcon } from "@heroicons/react/20/solid";
-
-const statuses = {
-  Paid: "text-green-600 bg-green-50 ring-green-600/20",
-  Withdraw: "text-gray-500 bg-gray-50 ring-gray-200",
-  Overdue: "text-red-600 bg-red-50 ring-red-600/10",
-};
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+import { useState, useEffect } from "react";
 
 export default function CollcetionCard() {
   const [cards, setCards] = useState([]);
