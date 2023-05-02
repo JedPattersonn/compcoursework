@@ -15,7 +15,7 @@ export default function CollcetionCard() {
   const [cards, setCards] = useState([]);
 
   const getCards = async () => {
-    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/posts`, {
+    let res = await fetch(`/api/posts`, {
       method: "GET",
     });
     res = await res.json();

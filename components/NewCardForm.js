@@ -1,36 +1,24 @@
 import { PhotoIcon, UserCircleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 
-export default function NewCollectionForm() {
-  const [name, setName] = useState("");
-  const [description, setDescription] = useState("");
-
-  const today = new Date();
-  const options = { year: "numeric", month: "long", day: "numeric" };
-  const formattedDate = today.toLocaleDateString("en-US", options);
-
-  const year = today.getFullYear();
-  const month = String(today.getMonth() + 1).padStart(2, "0");
-  const day = String(today.getDate()).padStart(2, "0");
-  const dateTime = `${year}-${month}-${day}`;
+export default function NewCardForm({ id }) {
+  const [term, setTerm] = useState("");
+  const [definition, setDefinition] = useState("");
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`, {
+    let res = await fetch(`/api/newcard`, {
       method: "POST",
       body: JSON.stringify({
-        key: Math.floor(Math.random() * 1000000000000000000),
-        name: name,
-        lastUsed: formattedDate,
-        dateTime: dateTime,
-        amount: 0,
-        description: description,
-        amountRevised: 0
+        id: Math.floor(Math.random() * 1000000000000000000),
+        key: id,
+        term: term,
+        definition: definition
       }),
     });
     if (res.ok) {
         // Redirect the user to a different page
-        window.location.href = "/";
+        window.location.href = `/collection/${id}`;
       } else {
         // Handle the error
         console.error("An error occurred while submitting the form.");
@@ -42,7 +30,7 @@ export default function NewCollectionForm() {
       <div className="space-y-12">
         <div className="border-b border-gray-900/10 pb-12">
           <h1 className="text-base font-semibold leading-7 text-gray-900">
-            New Collection
+            New Card
           </h1>
 
           <div className="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -52,7 +40,7 @@ export default function NewCollectionForm() {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Collection Name
+                  Term
                 </label>
                 <div className="mt-2">
                   <input
@@ -61,8 +49,8 @@ export default function NewCollectionForm() {
                     className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                     placeholder="Biology Paper 1"
                     aria-describedby="email-description"
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}
+                    value={term}
+                    onChange={(e) => setTerm(e.target.value)}
                   />
                 </div>
               </div>
@@ -72,7 +60,7 @@ export default function NewCollectionForm() {
                   htmlFor="about"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Description
+                  Definition
                 </label>
                 <textarea
                   id="about"
@@ -80,8 +68,8 @@ export default function NewCollectionForm() {
                   rows={3}
                   className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                   defaultValue={""}
-                  value={description}
-                  onChange={(e) => setDescription(e.target.value)}
+                  value={definition}
+                  onChange={(e) => setDefinition(e.target.value)}
                 />
               </div>
             </div>

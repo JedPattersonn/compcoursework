@@ -4,6 +4,7 @@ import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import NewCardForm from "../../components/NewCardForm";
+import { useRouter } from "next/router";
 
 const user = {
   name: "Tom Cook",
@@ -22,6 +23,9 @@ function classNames(...classes) {
 }
 
 export default function NewCard(props) {
+
+    const router = useRouter();
+    const { id } = router.query;
   return (
     <>
       <div className="min-h-full">
@@ -289,7 +293,7 @@ export default function NewCard(props) {
                   </h2>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6">
-                    <NewCardForm />
+                    <NewCardForm id={id}/>
                     </div>
                   </div>
                 </section>

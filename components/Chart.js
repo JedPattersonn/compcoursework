@@ -9,7 +9,7 @@ const PieChart = () => {
   const [cards, setCards] = useState([]);
 
   const getCards = async () => {
-    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`, {
+    let res = await fetch(`/api/collection`, {
       method: "GET",
     });
     res = await res.json();

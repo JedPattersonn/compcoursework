@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import CollectionDashboard from "@/components/CollectionDashboard";
 
 const Collection = ({ id }) => {

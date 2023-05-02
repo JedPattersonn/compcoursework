@@ -28,7 +28,7 @@ export default function CollectionDashboard({ id }) {
   const [title, setTitle] = useState("");
   const fetchData = async () => {
     try {
-      let response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/query`, {
+      let response = await fetch(`/api/query`, {
         method: "POST",
         body: JSON.stringify({
           key: +id,
@@ -49,7 +49,7 @@ export default function CollectionDashboard({ id }) {
   const fetchTitle = async () => {
     try {
       let response = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/collectiondata`,
+        `/api/collectiondata`,
         {
           method: "POST",
           body: JSON.stringify({
@@ -331,7 +331,7 @@ export default function CollectionDashboard({ id }) {
                   </h2>
                   <div className="overflow-hidden rounded-lg bg-white shadow">
                     <div className="p-6">
-                      <CardGridHeader title={title} />
+                      <CardGridHeader title={title} id={id}/>
                       <br />
                       <CardGrid data={data} />
                     </div>

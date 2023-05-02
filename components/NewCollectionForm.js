@@ -16,7 +16,7 @@ export default function NewCardForm() {
 
   const submitHandler = async (e) => {
     e.preventDefault();
-    let res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/collection`, {
+    let res = await fetch(`/api/collection`, {
       method: "POST",
       body: JSON.stringify({
         key: Math.floor(Math.random() * 1000000000000000000),
